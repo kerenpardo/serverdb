@@ -1,11 +1,11 @@
 const userController = require('../DL/controllers/usercontroller')
-const{createToken}=require("./jwt")
-
+const{createToken}=require("../middleware/jwt")
+const jwtFn = require("../middleware/jwt")
 // async function getUserById(){
 
 
 // }
-exports.getAllUsers = async () => {
+async function getAllUsers  ()  {
     const users = await userController.read({})
     if (users.length === 0) throw ({ code: 400, msg: "there is no users" })
     console.log(users)
@@ -46,18 +46,5 @@ exports.del = (id) => {
 }
 
 
-let user1 = {
-    firstName: 'jonatan',
-    lastName: 'levi',
-    email: 'jon2@gmail.com',
-    password: '1234',
-    address: {
-        street: 'leshem',
-        homeNum: 20,
-        city: 'naale'
-    },
-    gender: 'male'
-}
 
-
-module.exports={login}
+module.exports={login,getAllUsers}
