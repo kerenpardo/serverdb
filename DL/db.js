@@ -14,17 +14,3 @@ exports.connect = async () => {
         console.log("error mongoose", e)
     }
 }
-// async function connect(){
-// try{
-//    await mongoose.connect(MONGO_URL,{useNewUrlParser:true},
-//         (err)=>{
-//             if(err){throw err}
-//             console.log('connection succes,state:',mongoose.connection.readyState)
-//         })
-// }
-// catch (err){
-//     console.log("error mongoose",e)
-// }
-// }
-
-// module.exports=connect;

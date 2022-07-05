@@ -10,9 +10,6 @@ async function read(filter,proj) {
 async function update(filter,data) {
     return await userModel.updateOne(filter,data);  
 }
-async function updateone(filter,data) {
-    return await userModel.updateOne(filter,data);  
-}
 async function readOne(filter, proj) {
     return await userModel.findOne(filter, proj);
 }
