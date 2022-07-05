@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 // import mongoose from 'mongoose'
 
-const MONGO_URL = 'mongodb+srv://kerenpardo:keren2001@cluster0.otbtx3e.mongodb.net/test1?retryWrites=true&w=majority'
+const MONGO_URL = 'mongodb+srv://kerenpardo:keren2001@cluster0.otbtx3e.mongodb.net/playlist?retryWrites=true&w=majority'
 exports.connect = async () => {
     try {
         await mongoose.connect(MONGO_URL, { useNewUrlParser: true },

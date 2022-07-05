@@ -17,19 +17,17 @@ exports.createuser =  async(userFeilds) => {
     return userController.create(userFeilds)
 }
 
-exports.login=async(email,password)=>{
-    if(!email||!password) throw({code:409,message:"missing data"})
-
-    const euser=await userController.read({email},"password")
-    if(!euser.length) throw({code:409,message:"user not found"})
-    console.log(password,euser[0].password)
-    if(password!=euser[0].password) throw({code:503,message:"not auth"})
-    const token=createToken(euser[0]._id)
-    return token;
-    
-
-
+async function login(loginData) {
+    const password = loginData.password;
+    const email = loginData.email;
+    const user = await userController.readOne({ email: email }, "+password");
+    console.log("🚀 ~ file: userLogic.js ~ line 8 ~ login ~ user", user)
+    if (!user) throw ({ code: 401, message: " unauthorized" })
+    if (user.password !== password) throw ({ code: 401, message: " unauthorized" })//bcrypt.compare
+    const token = jwtFn.createToken(user._id)
+    return {token:token}
 }
+
 exports.register =  async(userFeilds) => {
     const euser=await userController.read({email:userFeilds.email})
     if(euser.length) throw ({code: 400, msg: "there is  user like this"})
@@ -61,3 +59,5 @@ let user1 = {
     gender: 'male'
 }
 
+
+module.exports={login}

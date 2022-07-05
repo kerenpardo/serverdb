@@ -2,29 +2,26 @@ require('../db').connect()
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+
     firstName: {
         type: String,
         required: true
     },
     lastName: {
         type: String,
-        required:true
 
     },
     email: {
         type: String,
         unique: true,
-        required:true
+        required: true
     },
     password: {
         type: String,
         required: true,
-        select: false
+    //   select:false
+    },
 
-    },
-    cellphone: {
-        type: Number
-    },
     createDate: {
         type: Date,
         default: Date.now
@@ -33,19 +30,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    address: {
-        street: { type: String },
-        homeNum: { type: Number },
-        city: { type: String }
-    },
-    gender: {
-        type: String,
-        enum: ['male', 'female']
-    },
-    lastlog: {
-        type: Date,
-        default: Date.now
-    },
+
     token: {
         type: String,
         select: false
