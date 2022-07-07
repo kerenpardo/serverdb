@@ -1,9 +1,8 @@
 const jwt=require("jsonwebtoken")
-
 const secret="1234"
-function createToken(id){
-   return jwt.sign({id},secret,{expiresIn:"1h"})
 
+function createToken(_id){
+   return jwt.sign({_id},secret,{expiresIn:"1h"})
 }
 // console.log(createToken("ab"))
 

@@ -24,8 +24,8 @@ async function login(loginData) {
     console.log("🚀 ~ file: userLogic.js ~ line 8 ~ login ~ user", user)
     if (!user) throw ({ code: 401, message: " unauthorized" })
     if (user.password !== password) throw ({ code: 401, message: " unauthorized" })//bcrypt.compare
-    const token = jwtFn.createToken(user._id)
-    return {token:token}
+    const token = createToken(user._id)
+    return token
 }
 
 exports.register =  async(userFeilds) => {
