@@ -1,14 +1,15 @@
-const userLogic = require('../BL/userLogic')
-const express = require('express');
-const { append } = require('express/lib/response');
-const auth = require('../middlewear/auth');
+
+const express = require("express");
 const router = express.Router();
+const userLogic = require("../BL/userLogic");
+const { authJWT } = require("../middleware/auth");
 
 
 // const router=express.Router();
 // module.exports = (req, res) => {
 //     res.send("test")
 // }
+
 router.post('/login', async (req,res) => {
     try{
       const token= await userLogic.login(req.body);
@@ -22,24 +23,21 @@ router.post('/login', async (req,res) => {
     }
   })
 
-router.all('/test', auth, (req, res) => {
-    res.send("test")
-})
-router.post('/login', async (req, res) => {
-    try {
-        const token = await userLogic.login(req.body.email, req.body.password)
-        res.send({ token })
-    } catch (error) {
-        console.log(error.message)
-        res.status(500).send(error.message)
-    }
-})
+// router.all('/test', auth, (req, res) => {
+//     res.send("test")
+// })
 
 router.post('/register', async (req, res) => {
     try {
+<<<<<<< HEAD
         const token = await userLogic.register(req.body)
         console.log(token )
         res.send(token)
+=======
+        const newUser = await userLogic.register(req.body)
+        // console.log(newUser + "newuser")
+        res.send(newUser)
+>>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
     } catch (error) {
         console.log(error.message)
         res.status(500).send({ message: "something went wrong" })
@@ -47,7 +45,7 @@ router.post('/register', async (req, res) => {
 
 })
 
-router.get('/', async (req, res) => {
+router.get('/', authJWT,async (req, res) => {
     try {
         const users = await userLogic.getAllUsers();
         res.send(users);

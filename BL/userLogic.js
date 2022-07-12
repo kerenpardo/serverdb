@@ -1,11 +1,11 @@
 const userController = require('../DL/controllers/usercontroller')
-const{createToken}=require("./jwt")
-
+const{createToken}=require("../middleware/jwt")
+const jwtFn = require("../middleware/jwt")
 // async function getUserById(){
 
 
 // }
-exports.getAllUsers = async () => {
+async function getAllUsers  ()  {
     const users = await userController.read({})
     if (users.length === 0) throw ({ code: 400, msg: "there is no users" })
     console.log(users)
@@ -28,7 +28,12 @@ async function login(loginData) {
     return token
 }
 
+<<<<<<< HEAD
 async function register (userFeilds) {
+=======
+exports.register =  async(userFeilds) => {
+    if(!userFeilds.email.includes("@")) throw ({code: 410, msg: "email is not valid"})
+>>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
     const euser=await userController.read({email:userFeilds.email})
     if(euser.length) throw ({code: 400, msg: "there is  user like this"});
     const user = await userController.create(userFeilds);
@@ -49,18 +54,9 @@ function del(id) {
 }
 
 
-let user1 = {
-    firstName: 'jonatan',
-    lastName: 'levi',
-    email: 'jon2@gmail.com',
-    password: '1234',
-    address: {
-        street: 'leshem',
-        homeNum: 20,
-        city: 'naale'
-    },
-    gender: 'male'
-}
 
-
+<<<<<<< HEAD
 module.exports={login,register,getUserById,del,updateUser}
+=======
+module.exports={login,getAllUsers}
+>>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
