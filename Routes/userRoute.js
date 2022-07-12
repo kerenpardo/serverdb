@@ -29,15 +29,9 @@ router.post('/login', async (req,res) => {
 
 router.post('/register', async (req, res) => {
     try {
-<<<<<<< HEAD
         const token = await userLogic.register(req.body)
         console.log(token )
         res.send(token)
-=======
-        const newUser = await userLogic.register(req.body)
-        // console.log(newUser + "newuser")
-        res.send(newUser)
->>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
     } catch (error) {
         console.log(error.message)
         res.status(500).send({ message: "something went wrong" })

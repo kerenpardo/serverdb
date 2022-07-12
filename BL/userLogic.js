@@ -28,12 +28,8 @@ async function login(loginData) {
     return token
 }
 
-<<<<<<< HEAD
-async function register (userFeilds) {
-=======
 exports.register =  async(userFeilds) => {
     if(!userFeilds.email.includes("@")) throw ({code: 410, msg: "email is not valid"})
->>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
     const euser=await userController.read({email:userFeilds.email})
     if(euser.length) throw ({code: 400, msg: "there is  user like this"});
     const user = await userController.create(userFeilds);
@@ -55,8 +51,4 @@ function del(id) {
 
 
 
-<<<<<<< HEAD
 module.exports={login,register,getUserById,del,updateUser}
-=======
-module.exports={login,getAllUsers}
->>>>>>> 4dee3e2d98f9b0230ea1a53617f9c51cb9d874e4
