@@ -29,6 +29,7 @@ async function login(loginData) {
 }
 
 exports.register =  async(userFeilds) => {
+    if(!userFeilds.email.includes("@")) throw ({code: 410, msg: "email is not valid"})
     const euser=await userController.read({email:userFeilds.email})
     if(euser.length) throw ({code: 400, msg: "there is  user like this"})
     return await userController.create(userFeilds)
