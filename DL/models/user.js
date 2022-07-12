@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
-    // userName:{
-    //     type: String,
-    //     unique: true,
-    //     required: true
-    // },
+    userName:{
+        type: String,
+        unique: true,
+        required: true
+    },
     email: {
         type: String,
         unique: true,
@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
-    },
-    token: {
-        type: String,
-        select: false
     }
 })
 

@@ -37,9 +37,9 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try {
-        const newUser = await userLogic.register(req.body)
-        console.log(newUser + "newuser")
-        res.send("register")
+        const token = await userLogic.register(req.body)
+        console.log(token )
+        res.send(token)
     } catch (error) {
         console.log(error.message)
         res.status(500).send({ message: "something went wrong" })

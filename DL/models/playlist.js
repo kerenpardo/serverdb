@@ -2,7 +2,7 @@ require('../db').connect()
 const mongoose = require('mongoose');
 
 const playlistSchema = new mongoose.Schema({
-    email:{
+    _id:{
         type: SchemaTypes.ObjectId,
         ref: 'user'
     },

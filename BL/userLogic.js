@@ -28,20 +28,23 @@ async function login(loginData) {
     return token
 }
 
-exports.register =  async(userFeilds) => {
+async function register (userFeilds) {
     const euser=await userController.read({email:userFeilds.email})
-    if(euser.length) throw ({code: 400, msg: "there is  user like this"})
-    return await userController.create(userFeilds)
+    if(euser.length) throw ({code: 400, msg: "there is  user like this"});
+    const user = await userController.create(userFeilds);
+    console.log(user)
+    const token = createToken(user._id)
+    return token
 }
-exports.getUserById = async (email) => {
+async function getUserById(email) {
     const user = await userController.read({email: email })
     if (!user.length) throw ({ code: "400", msg: "there is no user like this" })
     return user;
 }
-exports.updateUser = (id, newField) => {
+function updateUser(id, newField)  {
     return userController.update({ _id: id }, newField)
 }
-exports.del = (id) => {
+function del(id) {
     return userController.del({ _id: id })
 }
 
@@ -60,4 +63,4 @@ let user1 = {
 }
 
 
-module.exports={login}
+module.exports={login,register,getUserById,del,updateUser}
